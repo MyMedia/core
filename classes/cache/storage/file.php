@@ -107,9 +107,12 @@ class Cache_Storage_File extends \Cache_Storage_Driver
 	 */
 	public function delete()
 	{
-		if (is_file($file = static::$path.$this->identifier_to_path($this->identifier).'.cache'))
+		$file = static::$path.$this->identifier_to_path($this->identifier).'.cache';
+		
+		if (is_file($file))
 		{
 			unlink($file);
+			clearstatcache(true, $file);
 			$this->reset();
 		}
 	}
