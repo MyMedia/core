@@ -32,7 +32,7 @@ class PhpErrorException extends \ErrorException
 			if (\Fuel::$env != \Fuel::PRODUCTION and ($this->code & error_reporting()) == $this->code)
 			{
 				static::$count++;
-				\Error::show_php_error(new \ErrorException($this->message, $this->code, 0, $this->file, $this->line));
+				\Errorhandler::show_php_error(new \ErrorException($this->message, $this->code, 0, $this->file, $this->line));
 			}
 		}
 		elseif (\Fuel::$env != \Fuel::PRODUCTION
@@ -40,7 +40,7 @@ class PhpErrorException extends \ErrorException
 				and ($this->severity & error_reporting()) == $this->severity)
 		{
 			static::$count++;
-			\Error::notice('Error throttling threshold was reached, no more full error reports are shown.', true);
+			\Errorhandler::notice('Error throttling threshold was reached, no more full error reports are shown.', true);
 		}
 	}
 }
@@ -48,7 +48,7 @@ class PhpErrorException extends \ErrorException
 /**
  *
  */
-class Error
+class Errorhandler
 {
 
 	public static $levels = array(
