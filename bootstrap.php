@@ -83,7 +83,7 @@ set_exception_handler(function (\Exception $e)
 	\Autoloader::_reset();
 
 	// deal with PHP bugs #42098/#54054
-	if ( ! class_exists('Error'))
+	if ( ! class_exists('Errorhandler'))
 	{
 		include COREPATH.'classes/error.php';
 		class_alias('\Fuel\Core\Errorhandler', 'Errorhandler');
@@ -99,7 +99,7 @@ set_error_handler(function ($severity, $message, $filepath, $line)
 	\Autoloader::_reset();
 
 	// deal with PHP bugs #42098/#54054
-	if ( ! class_exists('Error'))
+	if ( ! class_exists('Errorhandler'))
 	{
 		include COREPATH.'classes/error.php';
 		class_alias('\Fuel\Core\Errorhandler', 'Errorhandler');
