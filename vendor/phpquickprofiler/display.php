@@ -26,21 +26,22 @@ function displayPqp($output) {
 #pQp .pqp-box h3 {font-weight:normal;line-height:200px;padding:0 15px;color:#fff;}
 .pQp,.pQp td {color:#444}
 #pqp-metrics {background:#000;width:100%}
-#pqp-console,#pqp-speed,#pqp-queries,#pqp-memory,#pqp-files,#pqp-config,#pqp-session,#pqp-get,#pqp-post {background-color:#000;border-top:1px solid #ccc;height:200px;overflow:auto}
+#pqp-console,#pqp-speed,#pqp-queries,#pqp-parser,#pqp-memory,#pqp-files,#pqp-config,#pqp-session,#pqp-get,#pqp-post {background-color:#000;border-top:1px solid #ccc;height:200px;overflow:auto}
 .pQp .pqp-green {color:#588e13!important}
 .pQp .pqp-blue {color:#3769a0!important}
 .pQp .pqp-purple {color:#953fa1!important}
 .pQp .pqp-orange {color:#d28c00!important}
+.pQp .pqp-olive {color:#a2cd5a!important}
 .pQp .pqp-red {color:#b72f09!important}
 .pQp .pqp-yellow {color:#CDCF3A!important}
 .pQp .pqp-cyan {color:#3EC4D3!important}
 .pQp .pqp-pink {color:#FF7CAD!important}
 .pQp .pqp-flesh {color:#FFA46E!important}
 .pQp strong {color:#fff}
-#pQp,#pqp-console,#pqp-speed,#pqp-queries,#pqp-memory,#pqp-files,#pqp-config,#pqp-session,#pqp-get,#pqp-post {display:none}
-.pQp .pqp-console,.pQp .pqp-speed,.pQp .pqp-queries,.pQp .pqp-memory,.pQp .pqp-files,.pQp .pqp-config,.pQp .pqp-session,.pQp .pqp-get,.pQp .pqp-post {display:block!important}
-.pQp .pqp-console #pqp-console,.pQp .pqp-speed #pqp-speed,.pQp .pqp-queries #pqp-queries,.pQp .pqp-memory #pqp-memory,.pQp .pqp-files #pqp-files,.pQp .pqp-config #pqp-config,.pQp .pqp-session #pqp-session,.pQp .pqp-get #pqp-get,.pQp .pqp-post #pqp-post {display:block}
-.pqp-console td.pqp-green,.pqp-speed td.pqp-blue,.pqp-queries td.pqp-purple,.pqp-memory td.pqp-orange,.pqp-files td.pqp-red,.pqp-config td.pqp-yellow,.pqp-session td.pqp-cyan,.pqp-get td.pqp-pink,.pqp-post td.pqp-flesh {background:#222!important;border-bottom:6px solid #fff!important;cursor:default!important}
+#pQp,#pqp-console,#pqp-speed,#pqp-queries,#pqp-parser,#pqp-memory,#pqp-files,#pqp-config,#pqp-session,#pqp-get,#pqp-post {display:none}
+.pQp .pqp-console,.pQp .pqp-speed,.pQp .pqp-queries,.pqp-parser,.pQp .pqp-memory,.pQp .pqp-files,.pQp .pqp-config,.pQp .pqp-session,.pQp .pqp-get,.pQp .pqp-post {display:block!important}
+.pQp .pqp-console #pqp-console,.pQp .pqp-speed #pqp-speed,.pQp .pqp-queries #pqp-queries,.pQp .pqp-parser #pqp-parser,.pQp .pqp-memory #pqp-memory,.pQp .pqp-files #pqp-files,.pQp .pqp-config #pqp-config,.pQp .pqp-session #pqp-session,.pQp .pqp-get #pqp-get,.pQp .pqp-post #pqp-post {display:block}
+.pqp-console td.pqp-green,.pqp-speed td.pqp-blue,.pqp-queries td.pqp-purple,.pqp-parser td.pqp-olive,.pqp-memory td.pqp-orange,.pqp-files td.pqp-red,.pqp-config td.pqp-yellow,.pqp-session td.pqp-cyan,.pqp-get td.pqp-pink,.pqp-post td.pqp-flesh {background:#222!important;border-bottom:6px solid #fff!important;cursor:default!important}
 .pqp-tallDetails #pQp .pqp-box {height:500px}
 .pqp-tallDetails #pQp .pqp-box h3 {line-height:500px}
 .pqp-hideDetails #pQp .pqp-box {display:none!important}
@@ -49,7 +50,7 @@ function displayPqp($output) {
 #pQp var {font-size:18px;margin:0 0 2px 0}
 #pQp h4 {font-size:10px}
 .pqp-hideDetails .heightToggle {visibility:hidden}
-#pqp-metrics td {height:80px;width:11%;text-align:center;cursor:pointer;border:4px solid #000;border-bottom:6px solid #444;-webkit-border-top-left-radius:15px;-moz-border-radius-topleft:15px;-webkit-border-top-right-radius:15px;-moz-border-radius-topright:15px;border-top-left-radius:15px;border-top-right-radius:15px;background-color:#222;}
+#pqp-metrics td {height:80px;width:10%;text-align:center;cursor:pointer;border:4px solid #000;border-bottom:6px solid #444;-webkit-border-top-left-radius:15px;-moz-border-radius-topleft:15px;-webkit-border-top-right-radius:15px;-moz-border-radius-topright:15px;border-top-left-radius:15px;border-top-right-radius:15px;background-color:#222;}
 #pqp-metrics td:hover {background:#222;border-bottom:6px solid #777}
 #pqp-metrics .pqp-green {border-left:none}
 #pqp-metrics .pqp-red {border-right:none}
@@ -96,6 +97,10 @@ function displayPqp($output) {
 #pqp-queries .pqp-main em {display:block;padding:2px 0 0 0;font-style:normal;color:#aaa;background-color:transparent;}
 #pqp-memory .pqp-side td {padding:12px 0;background-color:#c48200;border-bottom:1px solid #865900;border-left:1px solid #865900;border-right:1px solid #865900}
 #pqp-memory .pqp-side td.pqp-alt {background-color:#ac7200;border-bottom:bone;border-left:none;-webkit-border-bottom-left-radius:30px;-moz-border-radius-bottomleft:30px;border-bottom-left-radius:30px}
+#pqp-parser .pqp-main pre {color:#eee}
+#pqp-parser .pqp-main td:hover pre {background:#2e2e2e}
+#pqp-parser .pqp-side td {border-bottom:1px solid #a2cd5a;border-left:1px solid #a2cd5a;border-right:1px solid #a2cd5a}
+#pqp-parser .pqp-side td.pqp-alt {background-color:#a2cd5a;border-bottom:none;border-left:none;-webkit-border-bottom-left-radius:30px;-moz-border-radius-bottomleft:30px;border-bottom-left-radius:30px}
 #pqp-files .pqp-side td {border-bottom:1px solid #7c1f00;border-left:1px solid #7c1f00;border-right:1px solid #7c1f00}
 #pqp-files .pqp-side td.pqp-alt {background-color:#9b2700;border-bottom:none;border-left:none;-webkit-border-bottom-left-radius:30px;-moz-border-radius-bottomleft:30px;border-bottom-left-radius:30px}
 #pqp-config .pqp-side td {border-bottom:1px solid #CDCF3A;border-left:1px solid #CDCF3A;border-right:1px solid #CDCF3A}
@@ -142,6 +147,7 @@ CSS
 		removeClassName(pQp, 'pqp-console');
 		removeClassName(pQp, 'pqp-speed');
 		removeClassName(pQp, 'pqp-queries');
+		removeClassName(pQp, 'pqp-parser');
 		removeClassName(pQp, 'pqp-memory');
 		removeClassName(pQp, 'pqp-files');
 		removeClassName(pQp, 'pqp-config');
@@ -274,6 +280,10 @@ CSS
 		  document.getElementById('pqp-queries').scrollTop -= e.wheelDeltaY;
 		  preventDefault(e);
 		}
+		document.getElementById('pqp-parser').onmousewheel = function(e){
+		  document.getElementById('pqp-parser').scrollTop -= e.wheelDeltaY;
+		  preventDefault(e);
+		}
 		document.getElementById('pqp-memory').onmousewheel = function(e){
 		  document.getElementById('pqp-memory').scrollTop -= e.wheelDeltaY;
 		  preventDefault(e);
@@ -309,6 +319,7 @@ $logCount = count($output['logs']['console']);
 $fileCount = count($output['files']);
 $memoryUsed = $output['memoryTotals']['used'];
 $queryCount = $output['queryTotals']['count'];
+$parserTotal = (isset($output['parserTotals']['total'])) ? $output['parserTotals']['total'] : '-';
 $speedTotal = $output['speedTotals']['total'];
 
 $printarray = function($items, $depth, &$class, &$count) use(&$printarray)
@@ -368,6 +379,10 @@ $output['postItems'] = $printarray(\Input::post(), 0, $class, $postCount);
 	<td class="pqp-purple" onclick="changeTab('pqp-queries');">
 		<var>$queryCount Queries</var>
 		<h4>Database</h4>
+	</td>
+	<td class="pqp-olive" onclick="changeTab('pqp-parser');">
+		<var>$parserTotal</var>
+		<h4>Parser</h4>
 	</td>
 	<td class="pqp-orange" onclick="changeTab('pqp-memory');">
 		<var>$memoryUsed</var>
@@ -527,6 +542,36 @@ else {
 		$return_output .='</table></div>';
 }
 
+$return_output .='</div>';
+
+$return_output .='<div id="pqp-parser" class="pqp-box">';
+
+if( ! isset($output['parserTotals']['memory_usage'])){
+	$return_output .='<h3>This panel has no log items.</h3>';
+}
+else {
+	$return_output .='<table class="pqp-side" cellspacing="0">
+		  	<tr><td><var>'.$output['parserTotals']['memory_usage'].'</var><h4>Memory Usage</h4></td></tr>
+		  	<tr><td><var>'.$output['parserTotals']['memory_peak_usage'].'</var><h4>Memory Peak Usage</h4></td></tr>
+		  	<tr><td class="pqp-alt"><var>'.$output['parserTotals']['total'].'</var><h4>Total Time</h4></td></tr>
+		 </table>
+		<div class="pqp-main"><table cellspacing="0">';
+
+		if((bool) count($output['parserTotals']['stopwatch'])){
+			$class ='';
+			$return_output .= '<tr><td><strong style="font-size:120%;">Stopwatch:</strong></td></tr>';
+			foreach($output['parserTotals']['stopwatch'] as $name => $event) {
+				$return_output .='<tr><td class="'.$class.'">'.$name.' <b>'.sprintf('%.2F MiB / %d ms', $event->getMemory() / 1024 / 1024, $event->getDuration()).'</b></td></tr>';
+				if($class == '') $class = 'pqp-alt';
+				else $class = '';
+			}
+		}
+		
+		$return_output .= '<tr><td><strong style="font-size:120%;">Node tree:</strong></td></tr>';
+		$return_output .= '<tr><td>'.$output['parserTotals']['node_tree'].'</td></tr>';
+
+		$return_output .='</table></div>';	
+}
 $return_output .='</div>';
 
 $return_output .='<div id="pqp-memory" class="pqp-box">';
