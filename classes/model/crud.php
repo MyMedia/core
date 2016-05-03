@@ -12,7 +12,7 @@
 
 namespace Fuel\Core;
 
-class Model_Crud extends \Model implements \Iterator, \ArrayAccess, \Serializable, \Sanitization
+class Model_Crud extends \Model implements \Iterator, \ArrayAccess, \Serializable, \Sanitization, \JsonSerializable
 {
 
 	/**
@@ -954,5 +954,15 @@ class Model_Crud extends \Model implements \Iterator, \ArrayAccess, \Serializabl
 		{
 			$this->__set($key, $value);
 		}
+	}
+	
+	public function jsonSerialize()
+	{
+		$data = $this->_data;
+
+		$data['_is_new'] = $this->_is_new;
+		$data['_is_frozen'] = $this->_is_frozen;
+
+		return $data;
 	}
 }
