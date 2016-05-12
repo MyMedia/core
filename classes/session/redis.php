@@ -41,6 +41,14 @@ class Session_Redis extends \Session_Driver
 
 		$this->config = $this->_validate_config($this->config);
 	}
+	
+	/**
+	 * Close the open connection on class destruction
+	 */
+	public function  __destruct()
+	{
+		$this->redis and $this->redis->close();
+	}
 
 	// --------------------------------------------------------------------
 
@@ -57,8 +65,20 @@ class Session_Redis extends \Session_Driver
 
 		if ($this->redis === false)
 		{
+			if( ! ($redis_config = \Config::get('db.redis.'.$this->config['database'])))
+			{
+				throw new \FuelException('Session Redis: Invalid instance name given.');
+			}
+			
 			// get the redis database instance
-			$this->redis = \Redis_Db::instance($this->config['database']);
+			$this->redis = new \Redis();
+			$this->redis->connect($redis_config['hostname'], $redis_config['port'], $redis_config['timeout']);
+			
+			// execute the auth command if a password is present in config
+			empty($redis_config['password']) or $this->redis->auth($redis_config['password']);
+
+			// Select database using zero-based numeric index
+			empty($redis_config['database']) or $this->redis->select($redis_config['database']);
 		}
 	}
 
@@ -300,5 +320,3 @@ class Session_Redis extends \Session_Driver
 	}
 
 }
-
-
