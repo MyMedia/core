@@ -65,6 +65,8 @@ class Session_Redis extends \Session_Driver
 
 		if ($this->redis === false)
 		{
+			\Config::load('db', true);
+			
 			if( ! ($redis_config = \Config::get('db.redis.'.$this->config['database'])))
 			{
 				throw new \FuelException('Session Redis: Invalid instance name given.');
