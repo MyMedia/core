@@ -45,7 +45,7 @@ abstract class Config_File implements Config_Interface
 		{
 			$config = $overwrite ?
 				array_merge($config, $this->load_file($path)) :
-				\Arr::merge($config, $this->load_file($path));
+				\Arr::merge_assoc($config, $this->load_file($path));
 		}
 
 		return $config;
