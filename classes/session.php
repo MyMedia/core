@@ -207,7 +207,36 @@ class Session
 
 		return static::$_instance;
 	}
+	
+	// --------------------------------------------------------------------
 
+	/**
+	 * Check if instance exists
+	 *
+	 * @param	instance
+	 * @access	public
+	 * @return	bool
+	 */
+	public static function instantiated($instance = null)
+	{
+		if ($instance !== null)
+		{
+			if ( ! array_key_exists($instance, static::$_instances))
+			{
+				return false;
+			}
+			
+			return true;
+		}
+		
+		if (static::$_instance === null)
+		{
+			return false;
+		}
+		
+		return true;
+	}
+	
 	// --------------------------------------------------------------------
 
 	/**
