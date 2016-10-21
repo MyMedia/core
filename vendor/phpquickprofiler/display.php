@@ -354,7 +354,8 @@ $output['configItems'] = $printarray(\Config::$items, 0, $class, $configCount);
 
 $class = '';
 $sessionCount = 0;
-$output['sessionItems'] = $printarray(\Session::get(null), 0, $class, $sessionCount);
+$sessionItems = (\Session::instantiated()) ? \Session::get(null) : array();
+$output['sessionItems'] = $printarray($sessionItems, 0, $class, $sessionCount);
 
 $class = '';
 $getCount = 0;
