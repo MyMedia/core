@@ -338,7 +338,16 @@ $printarray = function($items, $depth, &$class, &$count) use(&$printarray)
 		}
 		elseif( ! is_array($value) AND ! is_object($value))
 		{
-			$output .= '<b>'.\Security::htmlentities($value).'</b>';
+			try
+			{
+				$string = (string)\Security::htmlentities($value);
+			}
+			catch(\Exception $e)
+			{
+				$string = $e->getMessage();
+			}
+			
+			$output .= '<b>'.$string.'</b>';
 		}
 		$output .= str_repeat('&rsaquo;&nbsp;', $depth).\Security::htmlentities($item).'</td></tr>';
 		if($class == '') $class = 'pqp-alt'; else $class = '';
