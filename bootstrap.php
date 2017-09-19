@@ -77,21 +77,41 @@ register_shutdown_function(function ()
 	return \Errorhandler::shutdown_handler();
 });
 
-set_exception_handler(function (\Exception $e)
-{
-	// reset the autoloader
-	\Autoloader::_reset();
+// Bring PHP 7.* compatibility
+if (PHP_VERSION_ID < 70000) {
+    set_exception_handler(function (\Exception $e) {
+        // reset the autoloader
+        \Autoloader::_reset();
 
-	// deal with PHP bugs #42098/#54054
-	if ( ! class_exists('Errorhandler'))
-	{
-		include COREPATH.'classes/error.php';
-		class_alias('\Fuel\Core\Errorhandler', 'Errorhandler');
-		class_alias('\Fuel\Core\PhpErrorException', 'PhpErrorException');
-	}
+        // deal with PHP bugs #42098/#54054
+        if (!class_exists('Errorhandler')) {
+            include COREPATH . 'classes/error.php';
+            class_alias('\Fuel\Core\Errorhandler', 'Errorhandler');
+            class_alias('\Fuel\Core\PhpErrorException', 'PhpErrorException');
+        }
 
-	return \Errorhandler::exception_handler($e);
-});
+        return \Errorhandler::exception_handler($e);
+    });
+} else {
+    set_exception_handler(function (\Throwable $e) {
+        // reset the autoloader
+        \Autoloader::_reset();
+
+        // deal with PHP bugs #42098/#54054
+        if (!class_exists('Errorhandler')) {
+            include COREPATH . 'classes/error.php';
+            class_alias('\Fuel\Core\Errorhandler', 'Errorhandler');
+            class_alias('\Fuel\Core\PhpErrorException', 'PhpErrorException');
+        }
+
+        if (!$e instanceof \Exception) {
+            // let's build an Exception instance, so that it continues working with the legacy code
+            $e = new \Exception($e->getMessage(), $e->getCode(), $e);
+        }
+
+        return \Errorhandler::exception_handler($e);
+    });
+}
 
 set_error_handler(function ($severity, $message, $filepath, $line)
 {
