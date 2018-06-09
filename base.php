@@ -47,6 +47,10 @@ if ( ! function_exists('logger'))
 {
 	function logger($level, $msg, $method = null)
 	{
+		if (is_array($method) && isset($method['exception'])) {
+			$method = 'exception';
+		}
+
 		static $labels = array(
 			100 => 'DEBUG',
 			200 => 'INFO',

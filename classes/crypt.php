@@ -12,8 +12,8 @@
 
 namespace Fuel\Core;
 
-use \PHPSecLib\Crypt_AES;
-use \PHPSecLib\Crypt_Hash;
+use \Crypt_AES;
+use \Crypt_Hash;
 
 class Crypt
 {
